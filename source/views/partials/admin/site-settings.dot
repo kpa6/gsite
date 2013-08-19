@@ -1,0 +1,258 @@
+{{# def.load("/views/partials/admin/topbar.dot") }}
+<script type="text/javascript">
+    filepicker.setKey('{{=it.env.FILEPICKER_API_KEY}}');
+</script>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1 class="pull-left domain-name">{{=it.site.domain}} <small>(<a href="http://{{=it.site.domain}}" target="_blank">visit site</a>)</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#general">General</a></li>
+                <li><a href="#sources">Sources</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#seo">SEO</a></li>
+                <li><a href="#ads">Ads</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#stats">Stats</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane active" id="general">
+                    <form class="form-horizontal" action="{{=it.api}}/sites" method="post">
+                        <div class="control-group">
+                            <label class="control-label" for="inputDomain">Domain</label>
+                            <div class="controls">
+                                <input class="input-xlarge" id="inputDomain" name="domain" type="text" value="{{=it.site.domain}}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputTitle">Title</label>
+                            <div class="controls">
+                                <input class="input-xlarge" id="inputTitle" name="title" type="text" value="{{=it.site.title||""}}">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="selectLanguage">Language</label>
+                            <div class="controls">
+                                <select id="selectLanguage" name="language" >
+                                    {{~it.locales :locale}}
+                                        <option  {{? locale==it.site.language}}selected="selected"{{?}}>{{=locale}}</option>
+                                    {{~}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-primary save">Save</button>
+                            {{?it.site.enable}}
+                                <button class="btn btn-danger pull-right toggle-site" data-enabled="true">Suspend</button>
+                            {{??}}
+                                <button class="btn btn-success pull-right toggle-site"  data-enabled="false">Activate</button>
+                            {{?}}
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="sources">
+                    <div class="row-fluid">
+                        <form class="form-inline pull-right well well-small">
+                            <input placeholder="domain: kizi.com" type="text">
+                            <input placeholder="language: es-ES" type="text">
+                            <input placeholder="categories: shooting, cars" type="text">
+                            <input placeholder="tags: ben 10, sonic" type="text">
+                            <button type="submit" class="btn btn-primary">Add source</button>
+                        </form>
+                    </div>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Domain</th>
+                                    <th>Language</th>
+                                    <th>Categories</th>
+                                    <th>Tags</th>
+                                    <th style="width: 25px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td><a href="#">kizi.com</a> <small>(<a href="#">visit site</a>)</small></td>
+                                    <td>en-US</td>
+                                    <td><i>all</i></td>
+                                    <td><i>all</i></td>
+                                    <td><button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button></td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td><a href="#">yepi.com</a> <small>(<a href="#">visit site</a>)</small></td>
+                                    <td>en-US</td>
+                                    <td>boys</td>
+                                    <td>ben 10, sonic</td>
+                                    <td><button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+
+                <div class="tab-pane" id="design">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputLogo">Select logo image</label>
+                            <div class="controls">
+                                <input id="inputLogo" name="logo_url" value="{{=it.site.logo_url || ""}}" {{# def.load("/views/partials/admin/filepicker-settings.dot") }}/>
+                                <br>
+                                <div class="preview">
+                                    {{?it.site.logo_url}}
+                                    <i class="icon-remove icon-white"></i><img src="{{=it.site.logo_url}}"/>
+                                    {{?}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputToolbarTopColor">Toolbar top color</label>
+                            <div class="controls">
+                                <div class="input-prepend color" id="cp1" data-color="{{=it.site.toolbar.start_color || ""}}" placeholder="#FFFFFF" data-color-format="hex">
+                                    <span class="add-on">
+                                        <i style="background-color: {{=it.site.toolbar.start_color || ""}}"></i>
+                                    </span>
+                                    <input type="text" id="inputToolbarTopColor" name="toolbar.start_color" value="{{=it.site.toolbar.start_color || ""}}" >
+
+                                </div><span class="help-inline">e.g. #ffffff</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputToolbarBottomColor">Toolbar bottom color</label>
+                            <div class="controls">
+                                <div class="input-prepend color" id="cp2" data-color="{{=it.site.toolbar.stop_color || ""}}" placeholder="#FFFFFF" data-color-format="hex">
+                                    <span class="add-on">
+                                        <i style="background-color: {{=it.site.toolbar.stop_color || ""}}"></i>
+                                    </span>
+                                    <input type="text" id="inputToolbarBottomColor" name="toolbar.stop_color" value="{{=it.site.toolbar.stop_color || ""}}" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputBackgroundColor">Background color</label>
+                            <div class="controls">
+                                <div class="input-prepend color" id="cp3" data-color="{{=it.site.background.color || ""}}" placeholder="#FFFFFF" data-color-format="hex">
+                                    <span class="add-on">
+                                        <i style="background-color: {{=it.site.background.color || ""}}"></i>
+                                    </span>
+                                    <input type="text" id="inputBackgroundColor" name="background.color" value="{{=it.site.background.color || ""}}" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputBackgroundImage">Select background image</label>
+                            <div class="controls">
+                                <input id="inputBackgroundImage" name="background.url" value="{{=it.site.background.url || ""}}" {{# def.load("/views/partials/admin/filepicker-settings.dot") }}/>
+                                <br>
+                                <div class="preview">
+                                    {{?it.site.background.url}}
+                                    <i class="icon-remove icon-white"></i><img src="{{=it.site.background.url}}"/>
+                                    {{?}}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary save">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="seo">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputDescription">Description</label>
+                            <div class="controls">
+                                <textarea rows="5" id="inputDescription" name="description" class="span5">{{=it.site.description||""}}</textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputKeywords">Keywords</label>
+                            <div class="controls">
+                                <textarea rows="5" id="inputKeywords" name="keywords" class="span5">{{=it.site.keywords||""}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary save">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="ads">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            ADS
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="games">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Game title</th>
+                                        <th>Game description</th>
+                                        <th>Game ranking <br>(score)</th>
+                                        <th>Number of <br>thumbs-up</th>
+                                        <th>Number of <br>thumbs-down</th>
+                                        <th>Number of people saved <br>the game as favorite</th>
+                                        <th>Average time <br>on page</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {{~it.games :game:i}}
+                                        <tr>
+                                            <td>{{=i+1}}</td>
+                                            <td><a href="http://{{=it.domain}}/games/{{!game.slug}}" target="_target">{{=game.title}}</a></td>
+                                            <td>{{=game.description}}</td>
+                                            <td>{{=game.score}}</td>
+                                            <td>{{=game.thumbs_up}}</td>
+                                            <td>{{=game.thumbs_down}}</td>
+                                            <td>not exist</td>
+                                            <td>{{=game.avg_time}}</td>
+                                        </tr>
+                                    {{~}}
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="stats">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            Stats
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+</script>
+
+{{# def.load("/views/partials/admin/footer.dot") }}

@@ -1,0 +1,36 @@
+{{# def.load("/views/partials/admin/topbar.dot") }}
+<div class="container">
+    <div class="row">
+    <form class="form-inline pull-right well well-small" method="post" action="{{=it.api}}/sites">
+        <input type="text" name="domain" placeholder="domain.com">
+        <button type="submit" class="btn btn-primary">Add site</button>
+    </form>
+    </div>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Title</th>
+                <th>Language</th>
+                <th>Number of games</th>
+                <th>Active?</th>
+                <th style="width: 91px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{~it.sites :site}}
+                <tr class="{{?site.enable}}success{{??}}error{{?}}">
+                    <td><a href="site/{{=site.domain}}">{{=site.domain}}</a> <small>(<a href="http://{{=site.domain}}" target="_blank">visit site</a>)</small></td>
+                    <td>{{=site.title || ""}}</td>
+                    <td>{{=site.language || ""}}</td>
+                    <td>{{=site.games_number || "0"}}</td>
+                    <td>{{?site.enable}}Yes{{??}}No{{?}}</td>
+                    <td><button class="btn btn-mini btn-danger" type="button">Update sources</button></td>
+                </tr>
+            {{~}}
+        </tbody>
+    </table>
+
+</div>
+{{# def.load("/views/partials/admin/footer.dot") }}

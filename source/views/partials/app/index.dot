@@ -1,0 +1,22 @@
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
+  FB.init({xfbml:false});
+}
+</script>
+{{# def.load("/views/partials/app/topbar.dot") }}
+<div class="content">
+    {{? it.games }}
+        {{var games=it.games;}}
+        <div id="games">{{#def.load("/views/partials/app/games.dot") }}</div>
+    {{?}}
+    {{? !it.games }}
+        Another content
+    {{?}}
+</div>
+{{# def.load("/views/partials/app/game-page.dot") }}
+<script type="text/javascript">
+    {{var locale_data = JSON.stringify(it.getCatalog());}}
+    var locale = {{=locale_data}};
+</script>
+<script type="text/javascript" src="{{=it.file['app.body.js']}}"></script>

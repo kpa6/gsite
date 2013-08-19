@@ -1,0 +1,9 @@
+{{# def.load("/views/partials/admin/topbar.dot") }}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1 class="pull-left">Ads setttings</h1>
+        </div>
+    </div>
+</div>
+{{# def.load("/views/partials/admin/footer.dot") }}

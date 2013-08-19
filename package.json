@@ -1,0 +1,39 @@
+﻿{
+  "name": "g-site",
+  "version": "0.0.1",
+  "author": "Nikita Lvov",
+  "dependencies": {
+    "coffee-script": "1.x.x",
+    "express": "3.2.5",
+    "express-dot": "git://github.com/david-driscoll/express-dot.git",
+    "memjs": "0.x.x",
+    "mongoose": "3.x.x",
+    "underscore": "1.x.x",
+    "walk": "2.x.x",
+    "i18n": "0.x.x",
+    "async": "0.x.x",
+    "knox": "0.x.x",
+    "passport": "0.x.x",
+    "passport-local": "0.x.x",
+    "simple_blitline_node": "2.x.x",
+    "googleapis": "0.2.9-alpha",
+    "nodetime":"*",
+    "node-logentries": "x.0.0",
+    "grunt": "~0.4.1",
+    "grunt-cli": "*",
+    "grunt-rev": "*",
+    "request": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-less": "0.5.2",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-dotjs": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.x.x"
+  }
+}

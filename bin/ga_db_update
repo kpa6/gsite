@@ -1,0 +1,3 @@
+#! ./node_modules/.bin/coffee
+
+require("../source/background_tasks/update_game_analytics").run()

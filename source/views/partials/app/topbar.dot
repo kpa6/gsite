@@ -1,0 +1,54 @@
+<div id="topbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        {{? it.logo_url}}
+        <a id="logo" class="pull-left" href="/">
+            <img src="{{=it.logo_url}}">
+        </a>
+        {{?}}
+        <button
+                data-tracking-category="Mycategory"
+                data-tracking-action="MyAction"
+                data-tracking-label="Mylabel"
+                data-tracking-value=4>Fire event</button>
+        <div id="userpanel" class="pull-left">
+            <div class="user-block">
+                <div class="avatar small">
+                    <img src="http://cdn0.kizi.com/assets/avatars/missing_avatar_medium-edfdb5ed7249ba8a40a58b236cebba42.png" id="user_image" alt="Missing_avatar_medium">
+                </div>
+                <div class="userinfo">
+                    <div class="username">Niklv</div>
+                    <div class="xp">Level 9000</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sitepanel" class="pull-right">
+            <div class="locale-selector">
+                {{ {
+                var locales = it.locales.filter(
+                    function(loc){
+                        return loc!==it.locale;
+                    })
+                } }}
+                <ul>
+                <li><a href="/" onclick="changeLocale(this);" data-lang="{{=it.locale}}"><img src=""></a></li>
+                {{~locales :locale}}
+                <li><a href="/" onclick="changeLocale(this);" data-lang="{{=locale}}"><img src=""></a></li>
+                {{~}}
+                </ul>
+                <script>
+                var changeLocale = function(obj){
+                    var d=new Date();
+                    d = new Date(d.getTime()+1000*24*60*60*1000);
+                    $.cookie('lang', $(obj).attr('data-lang'), {expires: d,  path: '/'});
+                    window.location.reload();
+                }
+                </script>
+            </div>
+            <div class="search-bar">
+                <input type="text" class="search-query" placeholder="{{=it.__('Find a game')}}" data-provide="typeahead">
+                <a href="#" class="search-icon"><img src="{{=it.file['search_icon.png']}}"></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{{~games :game}}<div class="game">
+    <a href="#!/games/{{=game.slug}}">
+        <img class="thumb" src="{{=game.image_url}}">
+        <div class="name">{{=game.title}}</div>
+    </a>
+</div>
+{{~}}

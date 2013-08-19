@@ -1,0 +1,55 @@
+{{ it.toolbar = it.toolbar || {}; }}
+{{ it.background = it.background || {}; }}
+{{ it.toolbar.start_color = it.toolbar.start_color || "#12a1ca"; }}
+{{ it.toolbar.stop_color = it.toolbar.stop_color || "#11729f"; }}
+{{ it.background.color = it.background.color || "#093D62"; }}
+
+body{
+    background-color: {{=it.background.color}};
+    {{?it.background.url}}
+    background-image: url('{{=it.background.url}}');
+    {{?}}
+}
+
+.navbar-inner{
+    background-color: {{=it.toolbar.start_color}};
+    background-image: -webkit-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -moz-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -o-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -ms-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+}
+
+
+.search-bar .search-query{
+    background-color: {{=it.background.color}};
+}
+
+.typeahead.dropdown-menu li > a{
+    background-color: {{=it.toolbar.stop_color}};
+}
+
+.typeahead.dropdown-menu li > a:hover{
+    background-color: {{=it.toolbar.start_color}};
+}
+#GamePage{
+    background-color: {{=it.toolbar.stop_color}};
+}
+
+#GamePage .game-page-body > div .top{
+    background-color: {{=it.toolbar.start_color}};
+    background-image: -webkit-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -moz-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -o-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: -ms-linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+    background-image: linear-gradient(top, {{=it.toolbar.start_color}}, {{=it.toolbar.stop_color}});
+}
+
+#GamePage .game-page-body > div .top .typicn:hover{
+    background-color: {{=it.toolbar.start_color}};
+    background-image: -webkit-linear-gradient(top, {{=it.toolbar.stop_color}}, {{=it.toolbar.start_color}});
+    background-image: -moz-linear-gradient(top, {{=it.toolbar.stop_color}}, {{=it.toolbar.start_color}});
+    background-image: -o-linear-gradient(top, {{=it.toolbar.stop_color}}, {{=it.toolbar.start_color}});
+    background-image: -ms-linear-gradient(top, {{=it.toolbar.stop_color}}, {{=it.toolbar.start_color}});
+    background-image: linear-gradient(top, {{=it.toolbar.stop_color}}, {{=it.toolbar.start_color}});
+}

@@ -1,0 +1,1 @@
+<script type="text/javascript" src="{{=it.file['admin.body.js']}}"></script>

@@ -1,0 +1,24 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar pull-left" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/admin">Game sites</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li {{? it.sites || it.site}}class="active"{{?}}><a href="/admin">Sites</a></li>
+                    <li {{? it.ads}}class="active"{{?}}><a href="/admin/ads/">Ads</a></li>
+                    <li {{? it.status}}class="active"{{?}}><a href="/admin/status/">Status</a></li>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li class="nav"><a href="/admin/logout">logout</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>

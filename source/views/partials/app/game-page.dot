@@ -1,0 +1,48 @@
+<div id="GamePageBackdrop" style="{{? !it.gamepage }}display: none;{{?}}" >
+    <div id="GamePage">
+{{? it.gamepage }}
+<div class="game-page-body">
+    <div class="games-list popular">
+        <div class="top">{{=it.__('Popular games')}}</div>
+        <div class="panel-content">{{? it.gamepage.popular}}{{var games=it.gamepage.popular;}}{{# def.load("/views/partials/app/games.dot") }}{{?}}</div>
+    </div>
+    <div class="game-window">
+        <div class="top">
+            <a href="/" class="typicn previous"></a>
+            <span class="game-name">{{=it.gamepage.title}}</span>
+            <a href="#" class="typicn thumbsUp"></a>
+            <a href="#" class="typicn thumbsDown"></a>
+            <a href="#" class="typicn heart"></a>
+        </div>
+        <div class="panel-content">
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="swf-game-wrapper">
+                <param name="movie" value="{{=it.gamepage.swf_url}}" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="{{=it.gamepage.swf_url}}" width="100%" height="100%">
+                <!--<![endif]-->
+                    <p><a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+                    </a></p>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </div>
+    </div>
+    <div class="games-list similar">
+        <div class="top">{{=it.__('Similar games')}}</div>
+        <div class="panel-content">{{? it.gamepage.similar}}{{var games=it.gamepage.similar;}}{{# def.load("/views/partials/app/games.dot") }}{{?}}</div>
+    </div>
+    <div class="ad">
+        <div class="top">{{=it.__('Advertisement')}}</div>
+        <div class="panel-content"></div>
+    </div>
+</div>
+<div class="fb-comments" data-href="http://{{=it.domain}}/games/{{=it.gamepage.slug}}" data-num-posts="10" data-colorscheme="light"></div>
+<script>
+    $('body').addClass("no-scroll");
+    $('#GamePage').focus();
+</script>
+{{?}}
+    </div>
+</div>
